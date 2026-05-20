@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — RR.dev × Maria Amelia Saúde e Estética</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #E0C06A;
+    --gold-dim:   rgba(201,168,76,0.12);
+    --dark:       #091A11;
+    --dark2:      #0D2419;
+    --dark3:      #122F20;
+    --dark4:      #1A3D2B;
+    --text:       #EAE4D2;
+    --muted:      #7A9485;
+    --cream:      #F2ECD8;
+    --green-mid:  #2D6A45;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(45,106,69,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      var(--dark);
+  }
+
+  .hero-butterfly {
+    position: absolute;
+    top: 50%;
+    right: 6%;
+    transform: translateY(-50%);
+    width: min(420px, 45vw);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 80px 60px;
+    max-width: 780px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 7px 18px;
+    width: fit-content;
+    font-size: 10px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2.4s infinite;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(44px, 6.5vw, 82px);
+    line-height: 1.06;
+    letter-spacing: -1.5px;
+    color: var(--cream);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.45s forwards;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero h1 span {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--text);
+    font-size: 0.62em;
+    letter-spacing: 0;
+    display: block;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 14.5px;
+    color: var(--muted);
+    max-width: 460px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+
+  .hero-divider {
+    width: 48px; height: 1px;
+    background: var(--gold);
+    margin: 38px 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.75s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.85s forwards;
+  }
+
+  .hero-meta-item span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .hero-meta-item strong {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .hero-footer-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 80px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  .hero-scroll {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-scroll::before {
+    content: '';
+    width: 36px; height: 1px;
+    background: var(--muted);
+  }
+
+  .hero-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(201,168,76,0.5);
+    letter-spacing: 1px;
+  }
+
+  /* ── FULL DIVIDER ── */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.18), transparent);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    position: relative;
+    padding: 110px 80px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    font-weight: 700;
+    color: rgba(45,106,69,0.07);
+    position: absolute;
+    top: 30px; right: -10px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -8px;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.12;
+    color: var(--cream);
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-title em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .section-body {
+    font-size: 14.5px;
+    color: #7A9485;
+    max-width: 620px;
+    margin-bottom: 64px;
+    line-height: 1.8;
+  }
+
+  /* ── IMPACT SECTION ── */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+  }
+
+  .impact-card {
+    background: var(--dark2);
+    padding: 44px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s;
+  }
+
+  .impact-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 0;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    transition: height 0.5s ease;
+  }
+
+  .impact-card:hover { background: var(--dark3); }
+  .impact-card:hover::before { height: 100%; }
+
+  .impact-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 62px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: -1px;
+  }
+
+  .impact-label {
+    font-size: 13px;
+    color: #6B8A78;
+    line-height: 1.6;
+  }
+
+  /* ── CHART ── */
+  .chart-wrapper {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 52px 44px;
+    position: relative;
+  }
+
+  .chart-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(45,106,69,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .chart-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  canvas { max-height: 300px; }
+
+  /* ── PROBLEMS ── */
+  .problems-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .problem-item {
+    background: var(--dark2);
+    padding: 34px 30px;
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    transition: background 0.3s;
+    border-left: 0px solid var(--gold);
+    transition: background 0.3s, border-left-width 0.3s;
+  }
+
+  .problem-item:hover {
+    background: var(--dark3);
+    border-left-width: 2px;
+  }
+
+  .problem-icon {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+    background: rgba(201,168,76,0.05);
+  }
+
+  .problem-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 7px;
+    line-height: 1.3;
+  }
+
+  .problem-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── PACKAGES ── */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 28px;
+  }
+
+  .package {
+    background: var(--dark2);
+    padding: 54px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .package::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,69,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .package.featured {
+    background: var(--dark3);
+    outline: 1px solid rgba(201,168,76,0.22);
+  }
+
+  .package.featured::after {
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .package-badge {
+    position: absolute;
+    top: 22px; right: 22px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 5px 14px;
+    font-weight: 600;
+  }
+
+  .package-type {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+
+  .package-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+  }
+
+  .package-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 38px;
+    line-height: 1.7;
+  }
+
+  .package-price {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 38px;
+    padding-bottom: 38px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .package-price-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .package-price-meta {
+    font-size: 11.5px;
+    color: var(--muted);
+    padding-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .package-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .package-items li {
+    font-size: 13px;
+    color: #7A9485;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+
+  .package-items li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.7;
+  }
+
+  /* ── COMBO ── */
+  .combo-box {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 44px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .combo-box::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+
+  .combo-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 7px;
+    letter-spacing: -0.3px;
+  }
+
+  .combo-text span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .combo-price {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .combo-price-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .combo-price-save {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── ROI NOTE ── */
+  .roi-note {
+    margin-top: 20px;
+    padding: 24px 32px;
+    background: rgba(45,106,69,0.08);
+    border-left: 2px solid rgba(201,168,76,0.3);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .roi-note strong { color: var(--gold); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .footer-section {
+    padding: 100px 80px;
+    background: var(--dark2);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .footer-section::before {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(45,106,69,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .footer-butterfly {
+    width: 90px;
+    margin: 0 auto 24px;
+    opacity: 0.65;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.9;
+  }
+
+  .footer-divider-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 0 auto 52px;
+    width: fit-content;
+  }
+
+  .footer-divider-ornament::before,
+  .footer-divider-ornament::after {
+    content: '';
+    width: 60px; height: 1px;
+    background: rgba(201,168,76,0.25);
+  }
+
+  .footer-divider-ornament span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer-cta-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 50px);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.22;
+    max-width: 620px;
+    margin: 0 auto 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .footer-cta-text em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .footer-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 52px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    text-decoration: none;
+    transition: all 0.35s;
+  }
+
+  .cta-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 48px rgba(201,168,76,0.18);
+  }
+
+  .footer-contact {
+    margin-top: 70px;
+    padding-top: 44px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+  }
+
+  .footer-contact-item span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .footer-contact-item strong {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .hero-content,
+    section,
+    .footer-section { padding: 72px 28px; }
+    .hero-footer-bar { padding: 20px 28px; }
+    .hero h1 { font-size: 40px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .problems-list { grid-template-columns: 1fr; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .combo-box { flex-direction: column; text-align: center; }
+    .combo-price { text-align: center; }
+    .hero-meta { flex-direction: column; gap: 22px; }
+    .footer-contact { flex-direction: column; gap: 28px; align-items: center; }
+    .section-number { font-size: 100px; }
+    .hero-butterfly { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────────────────────── -->
+<div class="hero">
+
+  <div class="hero-bg"></div>
+
+  <!-- Butterfly watermark -->
+  <svg class="hero-butterfly" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Upper left wing -->
+    <path d="M150 140 Q110 90 70 60 Q30 30 20 70 Q10 110 60 130 Q100 148 150 140Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.04)"/>
+    <!-- Upper right wing -->
+    <path d="M150 140 Q190 90 230 60 Q270 30 280 70 Q290 110 240 130 Q200 148 150 140Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.04)"/>
+    <!-- Lower left wing -->
+    <path d="M150 140 Q115 165 90 200 Q65 235 85 250 Q110 260 140 238 Q158 225 150 140Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.03)"/>
+    <!-- Lower right wing -->
+    <path d="M150 140 Q185 165 210 200 Q235 235 215 250 Q190 260 160 238 Q142 225 150 140Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.03)"/>
+    <!-- Inner wing details -->
+    <path d="M150 140 Q120 110 90 100" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+    <path d="M150 140 Q180 110 210 100" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+    <!-- Body -->
+    <ellipse cx="150" cy="152" rx="3" ry="16" fill="#C9A84C" opacity="0.7"/>
+    <circle cx="150" cy="136" r="4" fill="#C9A84C" opacity="0.7"/>
+    <!-- Antennae -->
+    <path d="M148 134 Q135 115 120 105" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
+    <path d="M152 134 Q165 115 180 105" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
+    <circle cx="120" cy="105" r="2.5" fill="#C9A84C" opacity="0.7"/>
+    <circle cx="180" cy="105" r="2.5" fill="#C9A84C" opacity="0.7"/>
+    <!-- Tail curl -->
+    <path d="M150 168 Q145 195 138 220 Q132 240 145 248" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-tag">Proposta Comercial Exclusiva</div>
+
+    <p class="hero-label">RR.dev × Maria Amelia Saúde e Estética</p>
+
+    <h1>
+      Sua clínica merece<br>ser <em>encontrada</em>
+      <span>por quem já está pronta para cuidar-se.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Uma presença digital bem construída no Google não é um detalhe — é a porta de entrada do seu negócio. E ela pode estar mais perto do que você imagina.
+    </p>
+
+    <div class="hero-divider"></div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span>Para</span>
+        <strong>Maria Amelia Saúde e Estética</strong>
+      </div>
+      <div class="hero-meta-item">
+        <span>Preparado por</span>
+        <strong>Renan Rigoni — RR.dev</strong>
+      </div>
+      <div class="hero-meta-item">
+        <span>Data</span>
+        <strong>Maio de 2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-footer-bar">
+    <div class="hero-scroll">Role para conhecer a proposta</div>
+    <div class="hero-brand">Maria Amelia</div>
+  </div>
+
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ─── IMPACTO ───────────────────────────────────────────── -->
+<section>
+  <div class="section-number">01</div>
+  <p class="section-eyebrow reveal">O poder da visibilidade</p>
+  <h2 class="section-title reveal">Por que o <em>Google</em><br>muda tudo para uma clínica?</h2>
+  <p class="section-body reveal">
+    Antes de ligar, antes de perguntar a uma amiga, antes de abrir o Instagram — a maioria das pessoas busca no Google. Uma clínica bem posicionada captura essa intenção no momento exato em que a cliente já está decidida a agir.
+  </p>
+
+  <div class="impact-grid reveal">
+    <div class="impact-card">
+      <div class="impact-number">76%</div>
+      <div class="impact-label">das pessoas que buscam um serviço local no Google visitam a empresa em até 24 horas.</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">2.7×</div>
+      <div class="impact-label">mais confiança gerada por perfis completos e atualizados em comparação com perfis negligenciados.</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">70%</div>
+      <div class="impact-label">dos consumidores decidem visitar um negócio baseados apenas nas informações do perfil no Google.</div>
+    </div>
+  </div>
+
+  <div class="chart-wrapper reveal">
+    <p class="chart-title">Visibilidade vs. Novos Contatos Mensais</p>
+    <p class="chart-subtitle">Impacto estimado de um perfil otimizado para clínicas de estética</p>
+    <canvas id="impactChart"></canvas>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ─── DIAGNÓSTICO ───────────────────────────────────────── -->
+<section>
+  <div class="section-number">02</div>
+  <p class="section-eyebrow reveal">Diagnóstico atual</p>
+  <h2 class="section-title reveal">O que está <em>impedindo</em><br>seu crescimento agora</h2>
+  <p class="section-body reveal">
+    Após uma análise cuidadosa do perfil da Maria Amelia Saúde e Estética, identificamos pontos críticos que, enquanto não corrigidos, limitam diretamente a captação de novos clientes — mesmo que a clínica tenha um excelente trabalho.
+  </p>
+
+  <div class="problems-list reveal">
+    <div class="problem-item">
+      <div class="problem-icon">⏰</div>
+      <div>
+        <p class="problem-title">Informações de horário incorretas</p>
+        <p class="problem-desc">O Google exibe um dado que não reflete a realidade da clínica. Isso gera desconfiança e pode afastar clientes antes mesmo do primeiro contato.</p>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">🔍</div>
+      <div>
+        <p class="problem-title">Ausência de descrição otimizada</p>
+        <p class="problem-desc">Sem uma descrição estratégica com os termos certos, o Google não entende exatamente o que a clínica oferece — e não a mostra para quem busca por esses serviços.</p>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">📋</div>
+      <div>
+        <p class="problem-title">Serviços e procedimentos não listados</p>
+        <p class="problem-desc">Quando uma cliente busca por um procedimento específico, o perfil não aparece. Cada serviço não cadastrado é uma oportunidade invisível.</p>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">💬</div>
+      <div>
+        <p class="problem-title">Avaliações sem resposta ativa</p>
+        <p class="problem-desc">Responder avaliações é um sinal de credibilidade para o Google e para potenciais clientes. O silêncio passa a mensagem errada sobre o cuidado com o atendimento.</p>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">📸</div>
+      <div>
+        <p class="problem-title">Galeria de fotos sem curadoria estratégica</p>
+        <p class="problem-desc">As fotos existem, mas não estão organizadas para contar uma história convincente. A primeira impressão visual do perfil é decisiva na escolha da cliente.</p>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">📢</div>
+      <div>
+        <p class="problem-title">Nenhuma publicação ou atualização recente</p>
+        <p class="problem-desc">Perfis ativos têm prioridade no algoritmo do Google. A ausência de posts indica ao sistema que o negócio não está engajado — reduzindo o alcance orgânico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ─── PROPOSTA ──────────────────────────────────────────── -->
+<section>
+  <div class="section-number">03</div>
+  <p class="section-eyebrow reveal">A solução</p>
+  <h2 class="section-title reveal">O que a <em>RR.dev</em><br>entrega por você</h2>
+  <p class="section-body reveal">
+    Duas etapas pensadas para construir uma presença sólida e mantê-la crescendo mês a mês — sem que você precise se preocupar com nada disso.
+  </p>
+
+  <div class="packages-grid reveal">
+
+    <div class="package">
+      <p class="package-type">Etapa 01 — Pagamento único</p>
+      <h3 class="package-name">Ativação de<br>Visibilidade</h3>
+      <p class="package-desc">Diagnóstico completo e correção de todos os pontos críticos do seu perfil. Entrega em até 5 dias úteis.</p>
+      <div class="package-price">
+        <span class="package-price-value">R$ 297</span>
+        <span class="package-price-meta">pagamento<br>único</span>
+      </div>
+      <ul class="package-items">
+        <li>Diagnóstico completo do perfil atual</li>
+        <li>Reescrita da descrição com SEO local</li>
+        <li>Correção de horários, categorias e atributos</li>
+        <li>Cadastro completo de serviços e procedimentos</li>
+        <li>Curadoria e orientação estratégica de fotos</li>
+        <li>2 publicações de estreia no perfil</li>
+        <li>Guia de boas práticas para a equipe</li>
+      </ul>
+    </div>
+
+    <div class="package featured">
+      <p class="package-type">Etapa 02 — Recorrência mensal</p>
+      <h3 class="package-name">Presença<br>Ativa</h3>
+      <p class="package-desc">Gestão contínua para manter o perfil vivo, relevante e em constante crescimento de visibilidade.</p>
+      <div class="package-price">
+        <span class="package-price-value">R$ 197</span>
+        <span class="package-price-meta">por<br>mês</span>
+      </div>
+      <ul class="package-items">
+        <li>6 a 8 publicações mensais estratégicas</li>
+        <li>Monitoramento e resposta a todas as avaliações</li>
+        <li>Atualização de promoções e datas sazonais</li>
+        <li>Ajustes e melhorias contínuas no perfil</li>
+        <li>Relatório mensal de visibilidade e desempenho</li>
+        <li>Suporte direto via WhatsApp</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="combo-box reveal">
+    <div class="package-badge" style="position:absolute;top:-1px;left:52px;right:auto;width:fit-content;">Recomendado</div>
+    <div class="combo-text">
+      <strong>Combo de lançamento</strong>
+      <span>Ativação + Primeiro mês de gestão juntos — com desconto especial</span>
+    </div>
+    <div class="combo-price">
+      <span class="combo-price-value">R$ 447</span>
+      <p class="combo-price-save">Economia de R$ 47 no total</p>
+    </div>
+  </div>
+
+  <div class="roi-note reveal">
+    <strong>Pense assim:</strong> se o investimento resultar em apenas 1 nova cliente por mês — algo muito conservador dado o potencial do Google — ele já se paga. O que esperar com 10, 20 novas clientes encontrando a clínica todo mês?
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ─── FOOTER / CTA ──────────────────────────────────────── -->
+<div class="footer-section">
+
+  <svg class="footer-butterfly" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M80 75 Q60 50 38 35 Q16 18 10 42 Q4 66 38 76 Q58 82 80 75Z" stroke="#C9A84C" stroke-width="1.4" fill="rgba(201,168,76,0.06)"/>
+    <path d="M80 75 Q100 50 122 35 Q144 18 150 42 Q156 66 122 76 Q102 82 80 75Z" stroke="#C9A84C" stroke-width="1.4" fill="rgba(201,168,76,0.06)"/>
+    <path d="M80 75 Q62 90 52 112 Q42 134 58 140 Q76 145 80 75Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.04)"/>
+    <path d="M80 75 Q98 90 108 112 Q118 134 102 140 Q84 145 80 75Z" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.04)"/>
+    <ellipse cx="80" cy="82" rx="2" ry="10" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="80" cy="72" r="3" fill="#C9A84C" opacity="0.6"/>
+    <path d="M79 70 Q72 60 64 55" stroke="#C9A84C" stroke-width="0.9" fill="none"/>
+    <path d="M81 70 Q88 60 96 55" stroke="#C9A84C" stroke-width="0.9" fill="none"/>
+    <circle cx="64" cy="55" r="2" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="96" cy="55" r="2" fill="#C9A84C" opacity="0.6"/>
+    <path d="M80 92 Q77 108 72 122" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.4"/>
+  </svg>
+
+  <p class="footer-logo">RR.dev</p>
+
+  <div class="footer-divider-ornament">
+    <span>Presença digital com propósito</span>
+  </div>
+
+  <h2 class="footer-cta-text">
+    Pronta para sua clínica<br>
+    aparecer para quem <em>realmente</em><br>
+    está procurando por você?
+  </h2>
+  <p class="footer-sub">
+    Entre em contato e dê o primeiro passo hoje.
+  </p>
+
+  <a href="https://wa.me/5534991415238" class="cta-btn">
+    Falar com a RR.dev →
+  </a>
+
+  <div class="footer-contact">
+    <div class="footer-contact-item">
+      <span>Prestador</span>
+      <strong>Renan Rigoni — RR.dev</strong>
+    </div>
+    <div class="footer-contact-item">
+      <span>Cliente</span>
+      <strong>Maria Amelia Saúde e Estética</strong>
+    </div>
+    <div class="footer-contact-item">
+      <span>Localização</span>
+      <strong>Patrocínio, Minas Gerais</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CHART (green + gold theme) ──────────────────────────────
+const ctx = document.getElementById('impactChart').getContext('2d');
+
+const g1 = ctx.createLinearGradient(0, 0, 0, 280);
+g1.addColorStop(0, 'rgba(201,168,76,0.85)');
+g1.addColorStop(1, 'rgba(201,168,76,0.08)');
+
+const g2 = ctx.createLinearGradient(0, 0, 0, 280);
+g2.addColorStop(0, 'rgba(45,106,69,0.5)');
+g2.addColorStop(1, 'rgba(45,106,69,0.04)');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
+    datasets: [
+      {
+        label: 'Perfil Otimizado',
+        data: [42, 61, 78, 95, 112, 130, 148, 167],
+        backgroundColor: g1,
+        borderColor: 'rgba(201,168,76,0.8)',
+        borderWidth: 1,
+        borderRadius: 2,
+      },
+      {
+        label: 'Perfil Sem Otimização',
+        data: [18, 20, 19, 22, 21, 23, 22, 24],
+        backgroundColor: g2,
+        borderColor: 'rgba(45,106,69,0.5)',
+        borderWidth: 1,
+        borderRadius: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: '#7A9485',
+          font: { family: 'DM Sans', size: 12 },
+          boxWidth: 12,
+          padding: 24,
+        }
+      },
+      tooltip: {
+        backgroundColor: '#122F20',
+        titleColor: '#C9A84C',
+        bodyColor: '#7A9485',
+        borderColor: 'rgba(201,168,76,0.2)',
+        borderWidth: 1,
+        padding: 14,
+        callbacks: {
+          label: c => ` ${c.parsed.y} novos contatos`
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.03)' },
+        ticks: { color: '#567060', font: { family: 'DM Sans', size: 12 } }
+      },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.03)' },
+        ticks: {
+          color: '#567060',
+          font: { family: 'DM Sans', size: 12 },
+          callback: v => v + ' contatos'
+        },
+        beginAtZero: true,
+      }
+    }
+  }
+});
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
