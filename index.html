@@ -285,8 +285,9 @@
     }
 
     .logo-img {
-      height: 48px;
-      width: auto;
+      width: clamp(148px, 11vw, 176px);
+      height: auto;
+      max-height: 40px;
       display: block;
       object-fit: contain;
     }
@@ -2105,17 +2106,22 @@
         gap: 18px;
       }
 
+      .logo-img {
+        width: clamp(138px, 14vw, 154px);
+        max-height: 34px;
+      }
+
       .desktop-nav {
-        gap: 22px;
+        gap: 18px;
       }
 
       .desktop-nav a {
-        font-size: 0.76rem;
+        font-size: 0.74rem;
       }
 
       .header-actions .btn {
-        padding: 12px 20px;
-        font-size: 0.78rem;
+        padding: 11px 16px;
+        font-size: 0.74rem;
       }
 
       .treatments-grid {
@@ -2128,6 +2134,18 @@
 
       .footer-grid {
         grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:980px) {
+
+      .desktop-nav,
+      .header-actions .btn {
+        display: none
+      }
+
+      .burger {
+        display: flex
       }
     }
 
@@ -2242,6 +2260,11 @@
 
       .header-inner {
         padding: 0 20px
+      }
+
+      .logo-img {
+        width: min(230px, 58vw);
+        max-height: 44px;
       }
 
       .hero-content {
@@ -2756,7 +2779,7 @@
   <header class="header" id="header">
     <div class="header-inner">
     <a href="#inicio" class="logo" id="logo-text">
-      <img src="imagens/logo.png" alt="Maria Amélia Saúde e Estética" class="logo-img"
+      <img src="imagens/logo-escrita.png" alt="Maria Amélia Saúde e Estética" class="logo-img"
         onerror="this.style.display='none';document.getElementById('logo-txt-fallback').style.display='block'">
       <span id="logo-txt-fallback" style="display:none;font-family:var(--font-display);font-size:1.35rem;font-weight:500;color:var(--white);letter-spacing:0.02em">Maria Amélia</span>
     </a>
@@ -3358,8 +3381,11 @@
       </div>
       <div class="aval-visual reveal">
         <div class="aval-visual-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M3 15a4 4 0 0 0 4 4h9a5 5 0 0 0 1.8-9.65 6 6 0 0 0-11.5 1.65A4 4 0 0 0 3 15z" />
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6.5 8.5a5.5 5.5 0 0 1 11 0c0 4.6-4.5 5.2-4.5 8.2a3 3 0 0 1-6 0" />
+            <path d="M9.5 8.6a2.5 2.5 0 0 1 5 0c0 2.6-3 3-3 5.1" />
+            <path d="M12 20c-1.2 0-2-.8-2-2" />
           </svg>
         </div>
         <h3>Seu cuidado começa com <em>escuta</em></h3>
