@@ -5,6 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maria Amélia Saúde e Estética — Patrocínio-MG</title>
+  <meta name="description" content="Clínica de estética em Patrocínio-MG. Tratamentos faciais e corporais personalizados com Maria Amélia — farmacêutica e esteticista. Agende sua avaliação pelo WhatsApp.">
+  <meta property="og:title" content="Maria Amélia Saúde e Estética — Patrocínio-MG">
+  <meta property="og:description" content="Tratamentos faciais e corporais personalizados. Beleza natural, autocuidado e atendimento humanizado em Patrocínio-MG.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -34,7 +40,7 @@
       --beige-2:  oklch(0.955 0.009 110);
       --text-dark:oklch(0.230 0.050 157);
       --text-mid: oklch(0.440 0.050 157);
-      --text-light:oklch(0.690 0.038 157);
+      --text-light:oklch(0.520 0.038 157);
       --white:    oklch(0.999 0.003 115);
 
       --font-display: 'Playfair Display', serif;
@@ -102,6 +108,17 @@
     /* =============================================
    UTILITÁRIOS
    ============================================= */
+    section[id] {
+      scroll-margin-top: 72px;
+    }
+
+    .treat-card,
+    .dif-card,
+    .prog-card,
+    .pq-card {
+      cursor: pointer;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -996,7 +1013,7 @@
 
     .ben-card:last-child { border-bottom: none }
 
-    .ben-card:hover { opacity: 0.78 }
+    .ben-card:hover { opacity: 1; }
 
     .ben-card-num {
       font-family: var(--font-display);
@@ -1812,6 +1829,18 @@
       max-height: 600px
     }
 
+    .faq-link {
+      color: var(--rose);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s;
+    }
+
+    .faq-link:hover {
+      opacity: 0.75;
+    }
+
     /* =============================================
    CTA FINAL
    ============================================= */
@@ -1991,6 +2020,31 @@
     .footer-bottom .footer-city {
       font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.28);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.55);
+      transition: var(--transition);
+    }
+
+    .footer-social-link:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--gold-light);
+      border-color: rgba(200, 168, 75, 0.30);
     }
 
     /* =============================================
@@ -2369,7 +2423,7 @@
       transition: opacity 0.25s;
     }
 
-    .top5-card:hover { opacity: 0.75 }
+    .top5-card:hover { opacity: 1; background: var(--beige-2); }
 
     .top5-num {
       font-family: var(--font-display);
@@ -2763,6 +2817,12 @@
 
 <body>
 
+  <noscript>
+    <div style="background:var(--sage);color:#fff;text-align:center;padding:14px 20px;font-family:var(--font-body);font-size:0.9rem;position:fixed;top:0;left:0;right:0;z-index:9999">
+      Para agendar, entre em contato pelo WhatsApp: <strong>(34) 98853-6872</strong> — R. Prof. Olímpio dos Santos, 154, Sala 104, Patrocínio-MG
+    </div>
+  </noscript>
+
   <!-- =============================================
      WHATSAPP FLUTUANTE
      ============================================= -->
@@ -2885,6 +2945,10 @@
       <div class="hero-img-block">
         <span class="hero-img-ring" aria-hidden="true"></span>
         <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80&auto=format&fit=crop"
+          srcset="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=480&q=80&auto=format&fit=crop 480w,
+                  https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=720&q=80&auto=format&fit=crop 720w,
+                  https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80&auto=format&fit=crop 900w"
+          sizes="(max-width: 900px) 100vw, 50vw"
           alt="Tratamento estético premium — ambiente acolhedor e elegante" loading="eager" decoding="async">
       <div class="hero-float-card">
         <div class="hero-float-icon">
@@ -2904,11 +2968,11 @@
   <!-- =============================================
      TOP 5 SERVIÇOS
      ============================================= -->
-  <section class="top5" id="top5">
+  <section class="top5" id="top5" aria-labelledby="top5-titulo">
     <div class="container">
       <div class="section-center reveal">
         <span class="tag">Mais procurados</span>
-        <h2 class="section-title">Os tratamentos que <em>fazem a diferença</em></h2>
+        <h2 class="section-title" id="top5-titulo">Os tratamentos que <em>fazem a diferença</em></h2>
         <p class="section-sub">Escolhidos pela Maria Amélia como os procedimentos que mais transformam — com técnica, individualidade e naturalidade.</p>
       </div>
       <div class="top5-grid">
@@ -2975,12 +3039,12 @@
   <!-- =============================================
      TRATAMENTOS
      ============================================= -->
-  <section class="treatments" id="tratamentos">
+  <section class="treatments" id="tratamentos" aria-labelledby="tratamentos-titulo">
     <div class="container">
       <div class="treatments-header reveal">
         <div>
           <span class="tag">Tratamentos</span>
-          <h2 class="section-title">Cuidados <em>para cada</em> necessidade</h2>
+          <h2 class="section-title" id="tratamentos-titulo">Cuidados <em>para cada</em> necessidade</h2>
           <p class="treatments-note">* Tratamentos disponíveis conforme avaliação e estrutura da clínica. Os exemplos
             abaixo são editáveis.</p>
         </div>
@@ -3294,11 +3358,11 @@
   <!-- =============================================
      BENEFÍCIOS
      ============================================= -->
-  <section class="beneficios" id="beneficios">
+  <section class="beneficios" id="beneficios" aria-labelledby="beneficios-titulo">
     <div class="container">
       <div class="section-center reveal">
         <span class="tag">Benefícios</span>
-        <h2 class="section-title">O que o autocuidado <em>transforma</em></h2>
+        <h2 class="section-title" id="beneficios-titulo">O que o autocuidado <em>transforma</em></h2>
         <p class="section-sub">Investir no cuidado com a sua pele e com o seu bem-estar vai além da estética — é um ato
           de autoconhecimento e valorização.</p>
       </div>
@@ -3407,7 +3471,7 @@
   <!-- =============================================
      SOBRE A CLÍNICA
      ============================================= -->
-  <section class="sobre" id="sobre">
+  <section class="sobre" id="sobre" aria-labelledby="sobre-titulo">
     <div class="container">
       <div class="sobre-img reveal">
         <div class="sobre-img-main">
@@ -3427,9 +3491,9 @@
       </div>
       <div class="sobre-text reveal">
         <span class="tag">Sobre nós</span>
-        <h2 class="section-title">Uma clínica feita para <em>cuidar de você</em></h2>
+        <h2 class="section-title" id="sobre-titulo">Uma clínica feita para <em>cuidar de você</em></h2>
         <p class="section-sub" style="margin-bottom:32px">
-          A <strong id="sobre-nome-clinica" style="color:var(--rose)"></strong> é uma clínica de estética em
+          A <strong id="sobre-nome-clinica" style="color:var(--rose)">Maria Amélia</strong> é uma clínica de estética em
           Patrocínio-MG dedicada ao cuidado com a beleza, autoestima e bem-estar. O atendimento é realizado de forma
           personalizada, com foco em acolhimento, segurança e indicação responsável dos tratamentos.
         </p>
@@ -3716,15 +3780,15 @@
   <!-- =============================================
      DEPOIMENTOS
      ============================================= -->
-  <section class="depoimentos" id="depoimentos">
+  <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-titulo">
     <div class="container">
       <div class="section-center reveal">
         <span class="tag">Depoimentos</span>
-        <h2 class="section-title">O que dizem quem <em>já se cuidou</em> com a gente</h2>
+        <h2 class="section-title" id="depoimentos-titulo">O que dizem quem <em>já se cuidou</em> com a gente</h2>
       </div>
       <div class="depo-grid">
         <div class="depo-card reveal">
-          <div class="depo-stars">★★★★★</div>
+          <div class="depo-stars" role="img" aria-label="5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></div>
           <p class="depo-text">"Fiz preenchimento labial e o resultado ficou muito natural. Exatamente o que eu queria — meus lábios mais bonitos, mas continuam parecendo meus. Me senti super segura durante todo o processo."</p>
           <div class="depo-author">
             <div class="depo-avatar">A</div>
@@ -3735,7 +3799,7 @@
           </div>
         </div>
         <div class="depo-card reveal">
-          <div class="depo-stars">★★★★★</div>
+          <div class="depo-stars" role="img" aria-label="5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></div>
           <p class="depo-text">"Nunca havia ido a uma clínica estética antes. A Maria Amélia explicou tudo com clareza, me deixou confortável e me ajudou a entender o que realmente fazia sentido para mim. Ambiente lindo, atendimento impecável."</p>
           <div class="depo-author">
             <div class="depo-avatar" style="background:linear-gradient(135deg,#C8A84B,#D9BE6A)">J</div>
@@ -3746,7 +3810,7 @@
           </div>
         </div>
         <div class="depo-card reveal">
-          <div class="depo-stars">★★★★★</div>
+          <div class="depo-stars" role="img" aria-label="5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></div>
           <p class="depo-text">"Fiz limpeza de pele e depois o botox. Em ambos, o atendimento foi cuidadoso e profissional. Minha pele mudou muito — e o botox ficou super natural, ninguém percebeu que fiz. Recomendo muito!"</p>
           <div class="depo-author">
             <div class="depo-avatar" style="background:linear-gradient(135deg,var(--sage),var(--sage-light))">C</div>
@@ -3873,11 +3937,11 @@
   <!-- =============================================
      FAQ
      ============================================= -->
-  <section class="faq" id="faq">
+  <section class="faq" id="faq" aria-labelledby="faq-titulo">
     <div class="container">
       <div class="section-center reveal">
         <span class="tag">Dúvidas frequentes</span>
-        <h2 class="section-title">Perguntas <em>frequentes</em></h2>
+        <h2 class="section-title" id="faq-titulo">Perguntas <em>frequentes</em></h2>
       </div>
       <div class="faq-list reveal">
         <div class="faq-item">
@@ -4019,7 +4083,7 @@
               </svg></span>
           </button>
           <div class="faq-answer">
-            <p>O Skin Club é um programa de acompanhamento estético anual da Maria Amélia. Em vez de tratar pontualmente, você planeja seus cuidados com antecedência, tem agendamento prioritário, preços diferenciados e acesso antecipado a novos protocolos. Há três planos disponíveis (Harmonia, Continuidade e Colágeno Ativo) adaptados a diferentes objetivos e rotinas. Saiba mais na <a href="skin-club.html" style="color:var(--rose);font-weight:500">página do Skin Club</a>.</p>
+            <p>O Skin Club é um programa de acompanhamento estético anual da Maria Amélia. Em vez de tratar pontualmente, você planeja seus cuidados com antecedência, tem agendamento prioritário, preços diferenciados e acesso antecipado a novos protocolos. Há três planos disponíveis (Harmonia, Continuidade e Colágeno Ativo) adaptados a diferentes objetivos e rotinas. Saiba mais na <a href="skin-club.html" class="faq-link">página do Skin Club</a>.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -4032,7 +4096,7 @@
               </svg></span>
           </button>
           <div class="faq-answer">
-            <p>O Método Botox Premium é um protocolo exclusivo criado pela Maria Amélia para a aplicação de toxina botulínica. Vai além da aplicação convencional — inclui avaliação detalhada individual, mapeamento muscular, identificação estratégica de pontos, planejamento facial personalizado e acompanhamento pós-procedimento. O foco é em naturalidade e sofisticação. Conheça mais na <a href="botox-premium.html" style="color:var(--rose);font-weight:500">página do Método Botox Premium</a>.</p>
+            <p>O Método Botox Premium é um protocolo exclusivo criado pela Maria Amélia para a aplicação de toxina botulínica. Vai além da aplicação convencional — inclui avaliação detalhada individual, mapeamento muscular, identificação estratégica de pontos, planejamento facial personalizado e acompanhamento pós-procedimento. O foco é em naturalidade e sofisticação. Conheça mais na <a href="botox-premium.html" class="faq-link">página do Método Botox Premium</a>.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -4122,6 +4186,17 @@
               </svg>
               <span id="footer-horario"></span>
             </div>
+          </div>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/mariaameliaestetica/" target="_blank" rel="noopener noreferrer"
+              class="footer-social-link" aria-label="Instagram da Maria Amélia Estética">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
